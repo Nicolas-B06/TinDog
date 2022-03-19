@@ -7,23 +7,27 @@ import Footer from '../comons/footer/Footer';
 export default function Home() {
 
     const [query, setQuery] = useState("");
-    const [ data, setData]= useState();
+    const [ dataImg, setDataImg]= useState();
+
+    const url ="https://api.thedogapi.com/v1/images/search?limit=20";
 
     useEffect(()=> {
-        fetch("https://api.thedogapi.com/v1/images/search")
-        .then(response =>{
-            console.log(response,'response');
-          return response.json();
-        })
-        .then(data =>{
-            console.log(data);
-          setData(data[0].url)
-          
-        })
-
+        const fetchData = async()=> {
+            try {
+                const response = await fetch( url, {
+                                        method:"GET",
+                                        headers:{"x-api-key" : "8120bc3b-db3b-4675-8206-53b4903ae255"}
+                                    })
+                const data = await response.json();                          
+                setDataImg(data) 
+            } catch(err){
+                console.log(err.stack)
+            }
+        }   
+        (async ()=> await fetchData())();
     }, []);
 
-    const dataFilter = data;
+    const dataFilter = dataImg;
     console.log(dataFilter,"datafilter");
     //.filter((dogs)=>{
     //     if ( dogs.names.toLowerCase().includes(query.toLowerCase())){
