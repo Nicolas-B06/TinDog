@@ -9,7 +9,7 @@ export default function Home() {
     const [query, setQuery] = useState("");
     const [ dataImg, setDataImg]= useState();
 
-    const url ="https://api.thedogapi.com/v1/images/search?limit=20";
+    const url ="https://api.thedogapi.com/v1/images/search?limit=80";
 
     useEffect(()=> {
         const fetchData = async()=> {
