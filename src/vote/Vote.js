@@ -2,7 +2,7 @@ import {React, useEffect, useState} from 'react';
 import Header                       from '../comons/header/Header';
 import List                         from '../home/list/List';
 import Footer                       from '../comons/footer/Footer';
-import { Button, Container }                   from '@mui/material';
+import {Button, Container, Card, CardMedia, CardActions} from '@mui/material';
 
 
 export default function Vote() {
@@ -33,15 +33,15 @@ export default function Vote() {
 
     return(
         <>
-            <Header/>
                 <Container maxWidth="x1">
-                    <List dogs={dataFilter}></List>
-                    <Container maxWidth="xl"> 
-                    <Button className="button-like" value="Get Dogs" onClick={getMoreDog}>Love it</Button> 
-                    <Button className="button-dislike" value="Get Dogs" onClick={getMoreDog}>Dislike it</Button>
-                    </Container>
+                    <Card >
+                        <CardMedia component="img" dogs={dataFilter} image={dataImg}/>
+                        <CardActions>
+                            <Button className="button-like" value="Get Dogs" onClick={getMoreDog}>Love it</Button>
+                            <Button className="button-dislike" value="Get Dogs" onClick={getMoreDog}>Dislike it</Button>
+                        </CardActions>
+                    </Card>
                 </Container>
-            <Footer/>
         </>
     )
 }
