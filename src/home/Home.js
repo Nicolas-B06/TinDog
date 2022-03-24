@@ -1,13 +1,13 @@
 import {useEffect, useState } from "react";
-import { FormControl, InputLabel, Select } from "@mui/material";
+import {Button, FormControl, InputLabel, Select} from "@mui/material";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import Card from '@mui/material/Card';
+import List from "./list/List";
 
 
 export default function Home() {
-  const [query, setQuery] = useState("");
+ // const [query, setQuery] = useState("");
   const [dataImg, setDataImg] = useState();
   const [nbImg, setNbImg] = useState("9");
   const [dataCategories, setDatacategories] = useState();
@@ -123,112 +123,23 @@ export default function Home() {
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel>How many dogs you want ?</InputLabel>
             <Select
-                value="Order"
-                label="Order"
+                value= {nbImg}
                 onChange={onChange}
                 onBlur={onChange}
-
-                inputProps={{ "aria-label": "Without label" }}
             >
-              <MenuItem value="3">3</MenuItem>
-              <MenuItem value="6">6</MenuItem>
-              <MenuItem value="9">9</MenuItem>
-              <MenuItem value="12">12</MenuItem>
+              <MenuItem value='3'>3</MenuItem>
+              <MenuItem value='6'>6</MenuItem>
+              <MenuItem value='9'>9</MenuItem>
+              <MenuItem value='12'>12</MenuItem>
             </Select>
           </FormControl>
+          <Button  type="button" variant="contained" value="Get Dogs" onClick={getMoreDog}>More</Button>
         </Box>
 
-        <Card dogs={dataFilter}></Card>
+        <List dogs={dataFilter}></List>
 
       </div>
 
 
-    /*    <>
-      <Box>
-        <FormControl className="select-form">
-          <h1 className="">Search by</h1>
-          <InputLabel className="select-form-label">
-            <p>Type</p>
-            <Select
-              className="select-form-nb-image"
-              value=""
-              onChange={onChange}
-              onBlur={onChange}
-            >
-              <MenuItem value="all">All</MenuItem>
-            </Select>
-          </InputLabel>
-        </FormControl>
-        <FormControl className="select-form">
-          <InputLabel className="select-form-label">
-            <p>Category</p>
-            <Select
-              className="select-form-nb-image"
-              value=""
-              onChange={onChange}
-              onBlur={onChange}
-            >
-              {dataCategories &&
-                dataCategories.map((categories) => {
-                  <option key={categories.id} value={categories.name}>
-                    {categories.name}
-                  </option>;
-                })}
-            </Select>
-          </InputLabel>
-        </FormControl>
-        <FormControl className="select-form">
-          <InputLabel className="select-form-label">
-            <p>Breed</p>
-            <Select
-              className="select-form-nb-image"
-              value=""
-              onChange={onChange}
-              onBlur={onChange}
-            >
-              <option value="none">None</option>
-            </Select>
-          </InputLabel>
-        </FormControl>
-        <FormControl className="select-form">
-          <InputLabel className="select-form-label">
-            <p>Order</p>
-            <Select
-              className="select-form-nb-image"
-              value=""
-              onChange={onChange}
-              onBlur={onChange}
-            >
-              <option value="random">Random</option>
-              <option value="asc">Asc</option>
-              <option value="desc">Desc</option>
-            </Select>
-          </InputLabel>
-        </FormControl>
-      </Box>
-      <List dogs={dataFilter}></List>
-      <FormControl className="select-form">
-        <InputLabel className="select-form-label">
-          <p>How many dogs you want ?</p>
-          <Select
-            className="select-form-nb-image"
-            value={nbImg}
-            onChange={onChange}
-            onBlur={onChange}
-          >
-            <MenuItem value="3">3</MenuItem>
-            <MenuItem value="6">6</MenuItem>
-            <MenuItem value="9">9</MenuItem>
-            <MenuItem value="12">12</MenuItem>
-          </Select>
-        </InputLabel>
-      </FormControl>
-      <InputLabel
-        className="reload-button"
-        type="button"
-        value="Get Dogs"
-        onClick={getMoreDog}
-      />
-    </>*/
   )
 }

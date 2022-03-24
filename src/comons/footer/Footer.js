@@ -9,7 +9,7 @@ function Copyright() {
         <Typography variant="body2" color="text.secondary">
             {'Copyright © '}
             <Typography variant ="body2">
-                Project by Nicolas, Alexis et Mickel
+                Project by Nicolas, Alexis et Mickael
             </Typography>{' '}
             {new Date().getFullYear()}
             {'.'}
