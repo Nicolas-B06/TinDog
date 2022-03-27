@@ -20,7 +20,10 @@ function Copyright() {
 export default function Footer() {
     return (
         <Box
+            width='100%'
+            position= 'relative'
             sx={{
+                bottom: '0',
                 display      : 'flex',
                 flexDirection: 'column',
             }}

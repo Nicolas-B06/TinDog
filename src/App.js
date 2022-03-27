@@ -15,7 +15,8 @@ export default function  App() {
             <BrowserRouter>
                 <Header/>
                 <Routes>
-                    <Route path= {"/" && "/home" } element={<Home />} />
+                    <Route path= "/" element={<Home />} />
+                    <Route path= "/home" element={<Home />} />
                     <Route path="/vote" element={<Vote/>} />
                     <Route path="/favorites" element={<Favorites/>} />
                     <Route path="/breeds" element={<Breeds/>} />
