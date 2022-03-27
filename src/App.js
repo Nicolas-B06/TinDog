@@ -5,6 +5,7 @@ import Vote                             from './vote/Vote';
 import Favorites                        from './favorites/Favorites';
 import Breeds                           from './breeds/Breeds';
 import './App.css';
+import { HomeOutlined } from '@mui/icons-material';
 
 export default function  App() {
   
@@ -12,7 +13,8 @@ export default function  App() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path= {"/" && "/home" } element={<Home />} />
+                    <Route path= {"/" } element={<Home />} />
+                    <Route path= {"/home" } element={<Home />} />
                     <Route path="/vote" element={<Vote/>} />
                     <Route path="/favorites" element={<Favorites/>} />
                     <Route path="/breeds" element={<Breeds/>} />
