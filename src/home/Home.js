@@ -11,16 +11,20 @@ export default function Home() {
   const [dataImg, setDataImg] = useState();
   const [nbImg, setNbImg] = useState("9");
   const [dataCategories, setDatacategories] = useState();
+  const [dataBreeds, setDataBreeds] = useState(); 
+  const [breedsValue, setBreedsValue] = useState("Affenpinscher");
 
   const dataFilter = dataImg;
 
   const url = `https://api.thedogapi.com/v1/images/search?limit=${nbImg}`;
+  const breedsUrl='https://api.thedogapi.com/v1/breeds';   
   const urlCat = "https://api.thedogapi.com/v1/categories";
   const apiKey = "8120bc3b-db3b-4675";
   // vrai apiKey à utiliser uniquement le dernier jour = 8120bc3b-db3b-4675-8206-53b4903ae255
   useEffect(() => {
     getMoreDog();
     getCategories();
+    getBreeds();
   }, []);
 
   const getMoreDog = async () => {
@@ -51,6 +55,23 @@ export default function Home() {
 
   function onChange(e) {
     setNbImg(e.target.value);
+  }
+
+  const getBreeds = async()=> {
+    try { 
+      const response = await fetch(breedsUrl, {
+        method: 'GET',
+        headers: {'x-api-key': apiKey}
+      });
+      const dataFetched = await response.json();
+      setDataBreeds(dataFetched);
+    } catch(err){
+      console.log(err.stack);
+    }
+  };
+
+  function onChangeBreeds(e) {
+    setBreedsValue(e.target.value);
   }
 
   return (
@@ -93,16 +114,15 @@ export default function Home() {
             </Select>
           </FormControl>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel>Breeds</InputLabel>
+            <InputLabel>Select a breed</InputLabel>
             <Select
-                value="Order"
-                label="Order"
-                onChange={onChange}
-                onBlur={onChange}
-
-                inputProps={{ "aria-label": "Without label" }}
+                value= {breedsValue}
+                onChange={onChangeBreeds}
+                onBlur={onChangeBreeds}
             >
-              <MenuItem value="none">None</MenuItem>
+               {dataBreeds && dataBreeds.map((breed)=> {  
+              return <MenuItem key={breed.id} value={breed.name}>{breed.name}</MenuItem>
+            })}
             </Select>
           </FormControl>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
