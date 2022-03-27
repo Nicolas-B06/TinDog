@@ -23,8 +23,6 @@ export default function List({ dogs }) {
             );
           })}
       </Box>
-
-      {/* {dogs && <img src={dogs.url} alt="dog img" style={{width:"500px"}}/>} */}
     </>
   );
 }

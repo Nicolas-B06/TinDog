@@ -48,14 +48,6 @@ export default function Vote() {
           Dislike it
         </Button>
       </Box>
-      {/*<Card sx={{m:'30px'}}>*/}
-      {/*  <CardMedia height="100" sx={{textAlign:'center'}}>*/}
-      {/*    */}
-      {/*  </CardMedia>*/}
-      {/*  <CardActions sx={{ justifyContent:'center'}}>*/}
-      {/*   */}
-      {/*  </CardActions>*/}
-      {/*</Card>*/}
     </Container>
   );
 }

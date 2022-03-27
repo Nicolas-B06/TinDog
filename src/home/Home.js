@@ -5,11 +5,10 @@ import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import List from "./list/List";
 
-
 export default function Home() {
- // const [query, setQuery] = useState("");
+
   const [dataImg, setDataImg] = useState();
-  const [nbImg, setNbImg] = useState("9");
+  const [nbImg, setNbImg] = useState("32");
   const [dataCategories, setDatacategories] = useState();
   const [dataBreeds, setDataBreeds] = useState(); 
   const [breedsValue, setBreedsValue] = useState("Affenpinscher");
@@ -19,8 +18,8 @@ export default function Home() {
   const url = `https://api.thedogapi.com/v1/images/search?limit=${nbImg}`;
   const breedsUrl='https://api.thedogapi.com/v1/breeds';   
   const urlCat = "https://api.thedogapi.com/v1/categories";
-  const apiKey = "8120bc3b-db3b-4675";
-  // vrai apiKey à utiliser uniquement le dernier jour = 8120bc3b-db3b-4675-8206-53b4903ae255
+  const apiKey = "8120bc3b-db3b-4675-8206-53b4903ae255";
+  
   useEffect(() => {
     getMoreDog();
     getCategories();
@@ -53,10 +52,6 @@ export default function Home() {
     }
   };
 
-  function onChange(e) {
-    setNbImg(e.target.value);
-  }
-
   const getBreeds = async()=> {
     try { 
       const response = await fetch(breedsUrl, {
@@ -69,6 +64,10 @@ export default function Home() {
       console.log(err.stack);
     }
   };
+
+  function onChange(e) {
+    setNbImg(e.target.value);
+  }
 
   function onChangeBreeds(e) {
     setBreedsValue(e.target.value);
@@ -151,15 +150,12 @@ export default function Home() {
               <MenuItem value='6'>6</MenuItem>
               <MenuItem value='9'>9</MenuItem>
               <MenuItem value='12'>12</MenuItem>
+              <MenuItem value='32'>32</MenuItem>
             </Select>
           </FormControl>
           <Button  type="button" variant="contained" value="Get Dogs" onClick={getMoreDog}>More</Button>
         </Box>
-
         <List dogs={dataFilter}></List>
-
       </Typography>
-
-
   )
 }

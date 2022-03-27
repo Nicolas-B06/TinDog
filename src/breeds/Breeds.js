@@ -1,16 +1,16 @@
 import { React, useEffect, useState } from "react";
 import { FormControl, InputLabel, Select } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-// https://api.TheDogAPI.com/v1/breeds
+import BreedsCard from "./breedsCard/BreedsCard";
 export default function Breeds() {
   const [dataBreeds, setDataBreeds] = useState();
-  const [nbImg, setNbImg] = useState();
+
+useEffect(() => {
+    getBreeds();
+  }, []);
 
   const breedsUrl = "https://api.TheDogAPI.com/v1/breeds";
   const apiKey = "8120bc3b-db3b-4675";
-  useEffect(() => {
-    getBreeds();
-  }, []);
 
   const getBreeds = async () => {
     try {
@@ -34,12 +34,13 @@ export default function Breeds() {
       <InputLabel>Breeds</InputLabel>
       <Select onChange={onChange} onBlur={onChange}>
         {dataBreeds &&
-          dataBreeds.map((breeds) => {
-            <MenuItem key={breeds.id} value={breeds.name}>
+          dataBreeds.map((breeds) => { 
+            return <MenuItem key={breeds.id} value={breeds.name}>
               {breeds.name}
             </MenuItem>;
           })}
       </Select>
+      <BreedsCard breedsValue={dataBreeds}></BreedsCard>
     </FormControl>
   );
 }

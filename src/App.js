@@ -5,7 +5,6 @@ import Vote                             from './vote/Vote';
 import Favorites                        from './favorites/Favorites';
 import Breeds                           from './breeds/Breeds';
 import './App.css';
-import { HomeOutlined } from '@mui/icons-material';
 import Header from "./comons/header/Header";
 import Footer from "./comons/footer/Footer";
 
