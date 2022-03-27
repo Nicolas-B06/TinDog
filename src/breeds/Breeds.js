@@ -1,16 +1,23 @@
-
-
+import {useEffect, useState } from "react";
+import {Button, FormControl, InputLabel, Select} from "@mui/material";
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
+import BreedsCard from "./breedsCard/BreedsCard";
 
 export default function Breeds() {
 
-  //function to get the data from the API
   const [data, setData] = useState(); 
-  const [url, setUrl] = useState('https://api.thedogapi.com/v1/breeds');    
-  const [apiKey, setApiKey] = useState('8120bc3b-db3b-4675-8206-53b4903ae255');
+  const [breedsValue, setBreedsValue] = useState("Affenpinscher");
 
-  useEffect(()=> {
+  useEffect(()=> { 
     getData();
   }, []);
+
+  const url='https://api.thedogapi.com/v1/breeds';    
+  const apiKey='8120bc3b-db3b-4675-8206-53b4903ae255';
+  
+  console.log(data, "data");
 
   const getData = async()=> {
     try { 
@@ -18,30 +25,33 @@ export default function Breeds() {
         method: 'GET',
         headers: {'x-api-key': apiKey}
       });
-      const data = await response.json();
-      setData(data);
+      const dataFetched = await response.json();
+      setData(dataFetched);
     } catch(err){
       console.log(err.stack);
     }
   };
-//function to fetch the first array of data
-
-  console.log(data, 'data');
-
+  function onChange(e) {
+    setBreedsValue(e.target.value);
+  }
+ 
   return (
     <>
-      <Header/>
       <div className="filter-container">
-        <form className="select-form">
-          <select className="select-breed">
-            <option value="">Select a breed</option>
-            {data && data.map((breed)=> {  //if data is not empty
-              return <option key={breed.id} value={breed.name}>{breed}</option>
+        <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel>Select a breed</InputLabel>
+            <Select
+                value= {breedsValue}
+                onChange={onChange}
+                onBlur={onChange}
+            >
+               {data && data.map((breed)=> {  
+              return <MenuItem key={breed.id} value={breed.name}>{breed.name}</MenuItem>
             })}
-          </select>
-        </form>
+            </Select>
+          </FormControl>
       </div>
-    <div>Breeds</div>
+      <BreedsCard data={data} breedsValue={breedsValue}/>
   </>
   )
 }
