@@ -75,7 +75,7 @@ export default function Home() {
   }
 
   return (
-      <div>
+      <Typography compeonent='div'>
         <Box>
           <Typography variant="h6" gutterBottom component="div">
             Search by
@@ -158,7 +158,7 @@ export default function Home() {
 
         <List dogs={dataFilter}></List>
 
-      </div>
+      </Typography>
 
 
   )
